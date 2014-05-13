@@ -1,34 +1,36 @@
 {
     "builders": [
         {
+            "type": "virtualbox-iso",
             "boot_command": [
                 "<esc>",
                 "<wait>linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/anaconda-ks.cfg<enter>"
             ],
             "boot_wait": "5s",
-            "disk_size": 40000,
+            "disk_size": 20480,
             "guest_os_type": "RedHat_64",
-            "headless": true,
+            "headless": false,
             "http_directory": "./http_directory",
-            "iso_checksum": "bb9af2aea1344597e11070abe6b1fcd3",
+            "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
             "iso_checksum_type": "md5",
-            "iso_url": "http://mirrors.usinternet.com/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-netinstall.iso",
+            "iso_url": "http://be.mirror.eurid.eu/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
+            "ssh_username": "vagrant",
             "ssh_password": "vagrant",
-            "ssh_username": "root",
-            "ssh_wait_timeout": "20m",
-            "type": "virtualbox",
+            "ssh_port": 22,
+            "ssh_wait_timeout": "40m",
+            "shutdown_command": "sudo halt -p",
+            "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+            "guest_additions_url": "C:\\Program%20Files\\Oracle\\VirtualBox\\VBoxGuestAdditions.iso",
+            "virtualbox_version_file": ".vbox_version",
             "vboxmanage": [
                 ["modifyvm", "{{.Name}}", "--memory", "1024"],
                 ["modifyvm", "{{.Name}}", "--cpus", "2"]
             ],
-            "vm_name": "packer-centos-6_4-64"
+            "vm_name": "packer-centos-6_5-64"
         }
     ],
     "provisioners": [
-        {
-            "type": "shell",
-            "script": "provisioners/install-virtualbox-guest-additions.sh"
-        },
+
         {
             "type": "shell",
             "script": "provisioners/clean-empty-space.sh"
@@ -37,7 +39,7 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "output": "centos-6_4-64_virtualbox.box"
+            "output": "centos-6_5-64_virtualbox.box"
         }
     ]
 }
