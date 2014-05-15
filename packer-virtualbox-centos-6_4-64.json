@@ -14,7 +14,7 @@
             "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
             "iso_checksum_type": "md5",
             "iso_url": "http://be.mirror.eurid.eu/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
-            "ssh_username": "vagrant",
+            "ssh_username": "root",
             "ssh_password": "vagrant",
             "ssh_port": 22,
             "ssh_wait_timeout": "40m",
