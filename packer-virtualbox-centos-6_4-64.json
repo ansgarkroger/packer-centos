@@ -33,6 +33,14 @@
 
         {
             "type": "shell",
+            "script": "provisioners/install-virtualbox-guest-additions.sh"
+        },
+        {
+            "type": "shell",
+            "inline": ["sudo true && curl -L https://www.opscode.com/chef/install.sh | sudo bash"]
+        },
+        {
+            "type": "shell",
             "script": "provisioners/clean-empty-space.sh"
         }
     ],
